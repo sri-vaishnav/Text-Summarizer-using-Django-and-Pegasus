@@ -1,0 +1,58 @@
+<!doctype html>
+{%block content %}
+<html>
+    <head>
+        <title> Text Summarizer </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+        
+        <div id = "form-input-id" style="padding-left: 5%;
+                                            padding-right: 5%;
+                                            padding-top: 7%;">
+            
+            {%if text %}
+            <div class="card text-center">
+                <div class="card-header">
+                    <h1>Text Summary</h1>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Text</h5><br><br>
+                    <p class="card-text">{{text}}</p><br><br>
+    
+                </div>
+                <div class="card-footer">
+                    <h2 class="card-title">Generated Summary</h5><br><br>
+                    <p class="card-text">{{summary}}</p><br><br><br><br>
+    
+                </div>
+                
+            </div>
+            <br><br>
+            <center><button type="button" class="btn btn-outline-dark"><a href="{% url 'index'%}">Go back</a></button></center>
+            {%endif%}
+            
+            {%if not text %}
+            <center><h1> Text Summarizer </h1></center><br><br><br>
+                <form action = 'textsummarizer' method = 'POST'>{%csrf_token %}
+                
+
+                    <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"><h5>Enter Text to be Summarized</h5></label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Type in your text here.."rows="10" name = 'input'></textarea>
+                    </div>
+                    <center><button type="submit" class="btn btn-outline-dark">SUMMARIZE</button></center>
+                </form>
+            {% endif%}
+
+
+            
+
+        <div>
+
+    </body>
+
+</html>
+{%endblock %}
